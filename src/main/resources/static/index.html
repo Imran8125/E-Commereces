@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Store</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>E-Commerce Store</h1>
+            <div class="header-controls">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search products...">
+                    <button onclick="searchProducts()">Search</button>
+                </div>
+                <button class="add-product-btn" onclick="openModal()">Add Product</button>
+                <div class="cart-icon" onclick="toggleCart()">
+                    🛒 <span id="cartCount">0</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="products-grid" id="productsContainer">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+        </main>
+
+        <div class="cart-sidebar" id="cartSidebar">
+            <h2>Shopping Cart</h2>
+            <div id="cartItems">
+                <!-- Cart items will be dynamically loaded here -->
+            </div>
+            <div class="cart-total">
+                <h3>Total: $<span id="cartTotal">0.00</span></h3>
+                <button onclick="checkout()">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add/Edit Product</h2>
+            <form id="productForm">
+                <input type="hidden" id="productId">
+                <div class="form-group">
+                    <label for="productName">Name:</label>
+                    <input type="text" id="productName" required>
+                </div>
+                <div class="form-group">
+                    <label for="productPrice">Price:</label>
+                    <input type="number" id="productPrice" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="productStock">Stock:</label>
+                    <input type="number" id="productStock" required>
+                </div>
+                <div class="form-group">
+                    <label for="productRating">Rating:</label>
+                    <input type="number" id="productRating" step="0.1" min="0" max="5" required>
+                </div>
+                <div class="form-group">
+                    <label for="productImage">Image URL:</label>
+                    <input type="url" id="productImage" required>
+                </div>
+                <button type="submit">Save Product</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
