@@ -1,4 +1,4 @@
-# 🛂 E-Commerce 2.0  
+# 🛂 E-Commerce
 
 A modern e-commerce platform built with Java.  
 
