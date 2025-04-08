@@ -5,6 +5,12 @@ let isAdminMode = false;
 let keyPressCount = 0;
 let lastKeyPressTime = 0;
 
+// Admin credentials (in a real app, this would be handled server-side)
+const ADMIN_CREDENTIALS = {
+    username: 'admin',
+    password: 'admin123'
+};
+
 // DOM Elements
 const productsContainer = document.getElementById('productsContainer');
 const cartSidebar = document.getElementById('cartSidebar');
@@ -15,17 +21,60 @@ const productModal = document.getElementById('productModal');
 const productForm = document.getElementById('productForm');
 const searchInput = document.getElementById('searchInput');
 const addProductBtn = document.querySelector('.add-product-btn');
+const adminLoginForm = document.getElementById('adminLoginForm');
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
+    // Check if we're on the login page
+    if (window.location.pathname.endsWith('login.html')) {
+        return;
+    }
+
+    // Check if user is logged in
+    if (!sessionStorage.getItem('isLoggedIn')) {
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Set admin mode if user is admin
+    isAdminMode = sessionStorage.getItem('isAdmin') === 'true';
+    
     loadProducts();
     loadCartItems();
     updateAdminUI();
 });
 
 document.addEventListener('keydown', handleKeyPress);
-productForm.addEventListener('submit', handleProductSubmit);
-document.querySelector('.close').addEventListener('click', closeModal);
+productForm?.addEventListener('submit', handleProductSubmit);
+document.querySelector('.close')?.addEventListener('click', closeModal);
+
+// Login Functions
+function continueAsCustomer() {
+    sessionStorage.setItem('isLoggedIn', 'true');
+    sessionStorage.setItem('isAdmin', 'false');
+    window.location.href = 'index.html';
+}
+
+function showAdminLogin() {
+    adminLoginForm.style.display = 'block';
+}
+
+function hideAdminLogin() {
+    adminLoginForm.style.display = 'none';
+}
+
+function loginAsAdmin() {
+    const username = document.getElementById('adminName').value;
+    const password = document.getElementById('adminPassword').value;
+
+    if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+        sessionStorage.setItem('isLoggedIn', 'true');
+        sessionStorage.setItem('isAdmin', 'true');
+        window.location.href = 'index.html';
+    } else {
+        alert('Invalid admin credentials');
+    }
+}
 
 // Key Press Handler
 function handleKeyPress(event) {
@@ -45,13 +94,17 @@ function handleKeyPress(event) {
 }
 
 function toggleAdminMode() {
-    isAdminMode = !isAdminMode;
-    updateAdminUI();
-    displayProducts(products); // Refresh the products display
+    if (sessionStorage.getItem('isAdmin') === 'true') {
+        isAdminMode = !isAdminMode;
+        updateAdminUI();
+        displayProducts(products); // Refresh the products display
+    }
 }
 
 function updateAdminUI() {
-    addProductBtn.style.display = isAdminMode ? 'block' : 'none';
+    if (addProductBtn) {
+        addProductBtn.style.display = isAdminMode ? 'block' : 'none';
+    }
     // Add a visual indicator for admin mode
     document.body.classList.toggle('admin-mode', isAdminMode);
 }

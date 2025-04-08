@@ -362,4 +362,113 @@ button:hover {
     border-radius: 5px;
     font-size: 0.8rem;
     z-index: 1000;
+}
+
+/* Login Page Styles */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--background-color);
+}
+
+.login-box {
+    background-color: var(--card-background);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.login-box h1 {
+    color: var(--accent-color);
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.login-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.login-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.customer-btn {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+.customer-btn:hover {
+    background-color: #2980b9;
+}
+
+.admin-btn {
+    background-color: #2ecc71;
+    color: var(--text-color);
+}
+
+.admin-btn:hover {
+    background-color: #27ae60;
+}
+
+.cancel-btn {
+    background-color: #e74c3c;
+    color: var(--text-color);
+}
+
+.cancel-btn:hover {
+    background-color: #c0392b;
+}
+
+.admin-login-form {
+    display: none;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.admin-login-form h2 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.admin-login-form .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.admin-login-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.admin-login-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
 } 
