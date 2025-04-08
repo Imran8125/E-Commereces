@@ -55,7 +55,7 @@ src/
 
 1️⃣ **Clone the repository**  
 ```bash
-git clone https://github.com/username/E-Commerces.git
+git clone https://github.com/Imran8125/E-Commerces.git
 ```
 
 2️⃣ **Configure database in `application.properties`**  
